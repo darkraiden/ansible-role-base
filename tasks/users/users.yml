@@ -1,0 +1,44 @@
+---
+
+- name: Create users from list
+  user:
+    name: "{{ item.username }}"
+    group: "{{ item.username if base_per_user_groups else omit }}"
+    groups: "{{ item.groups | default([]) | join(',') or  omit }}"
+    password: "{{ item.password | default(omit) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    comment: "{{ item.name | default(omit) }}"
+    uid: "{{ item.uid | default(omit) }}"
+    createhome: "{{ item.home | default('True') }}"
+  with_items: "{{ base_users }}"
+
+- name: Add SSH public keys
+  authorized_key:
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+  with_subelements:
+    - "{{ base_users }}"
+    - public_keys
+
+- name: Add SSH private key
+  copy:
+    content: "{{ item.private_key }}"
+    dest: "/home/{{item.username}}/.ssh/id_rsa"
+    owner: "{{item.username}}"
+    group: "{{item.username if base_per_user_groups else omit }}"
+    mode: 0400
+  with_items: "{{ base_users }}"
+  when: item.private_key is defined
+
+- name: Remove users
+  user:
+    name: "{{ item.username }}"
+    state: absent
+  with_items: "{{ base_deleted_users }}"
+
+- name: Remove users' groups
+  group:
+    name: "{{ item.username }}"
+    state: absent
+  with_items: "{{ base_deleted_users }}"
+  when: base_per_user_groups

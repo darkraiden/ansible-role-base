@@ -1,0 +1,11 @@
+---
+
+- name: restart ntpd
+  service:
+    name: ntpd
+    state: restarted
+
+- name: restart ssh
+  service:
+    name: "{{ base_ssh_service }}"
+    state: restarted

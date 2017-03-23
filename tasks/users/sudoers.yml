@@ -1,0 +1,11 @@
+---
+
+- name: Add sudoers snippet
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/{{ base_sudoers.filename }}"
+    mode: "{{ base_sudoers.mode | default('0440')}}"
+    owner: root
+    group: root
+    validate: /usr/sbin/visudo -cf %s
+  when: base_sudoers is defined

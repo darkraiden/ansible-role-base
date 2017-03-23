@@ -1,0 +1,14 @@
+---
+
+- name: Set the system locale
+  lineinfile:
+    dest: /etc/locale.conf
+    regexp: "LANG"
+    line: "LANG={{ base_lang }}"
+    state: present
+  register: locale_status
+  when: base_lang != ""
+
+- name: Set the current session with set locale
+  command: "localectl set-locale LANG=\"{{ base_lang }}\" LC_CTYPE=\"{{ base_lc_ctype }}\""
+  when: locale_status.changed and base_lc_ctype != ""

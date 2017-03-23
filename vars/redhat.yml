@@ -1,0 +1,11 @@
+---
+
+base_ntp_package_name: "ntp"
+
+base_disable_firewalld: True
+
+base_disable_selinux: True
+
+base_firewalld_bin_path: /usr/sbin/firewalld
+
+base_ssh_service: sshd

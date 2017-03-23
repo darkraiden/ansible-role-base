@@ -1,0 +1,14 @@
+---
+
+- name: Set the timezone
+  file:
+    src: "/usr/share/zoneinfo/{{ base_timezone }}"
+    dest: /etc/localtime
+    state: link
+    force: True
+
+- name: Install ntp daemon
+  yum:
+    name: "{{ base_ntp_package_name }}"
+    state: present
+  notify: restart ntpd

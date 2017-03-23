@@ -1,0 +1,25 @@
+---
+
+- name: Ensure firewalld is installed
+  stat:
+    path: "{{ base_firewalld_bin_path }}"
+  register: firewalld_status
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    enabled: False
+  when: firewalld_status.stat.exists and base_disable_firewalld
+
+- name: Disable SELinux in the configuration file
+  lineinfile:
+    dest: /etc/sysconfig/selinux
+    regexp: '^(#)?SELINUX='
+    line: 'SELINUX=disabled'
+    state: present
+  register: selinux_status
+  when: base_disable_selinux
+
+- name: Disable SELinux
+  command: /usr/sbin/setenforce 0
+  when: selinux_status.changed and base_disable_selinux

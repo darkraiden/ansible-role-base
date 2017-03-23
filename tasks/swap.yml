@@ -1,0 +1,37 @@
+---
+
+- name: Check if the swap file exists
+  stat:
+    path: /swapfile
+  register: swapfile_status
+
+- name: Create a file to be used for swap
+  command: dd if=/dev/zero of=/swapfile bs=1MB count=1000
+  when: not swapfile_status.stat.exists
+
+- name: Format the file for swap
+  command: mkswap /swapfile
+  when: not swapfile_status.stat.exists
+
+- name: Update the swapfile permissions
+  file:
+    path: /swapfile
+    owner: root
+    group: root
+    mode: 0600
+  when: not swapfile_status.stat.exists
+
+- name: Enable the swapfile
+  command: swapon /swapfile
+  when: not swapfile_status.stat.exists
+
+- name: write a swap entry in fstab
+  mount:
+    name: none
+    src: /swapfile
+    fstype: swap
+    opts: sw
+    passno: 0
+    dump: 0
+    state: present
+  when: not swapfile_status.stat.exists

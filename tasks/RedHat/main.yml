@@ -1,0 +1,9 @@
+---
+
+- include: system-updates.yml
+
+- include: locale.yml
+
+- include: time.yml
+
+- include: security.yml

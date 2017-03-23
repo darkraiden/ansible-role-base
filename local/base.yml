@@ -1,0 +1,35 @@
+---
+
+base_global_envs:
+  - "ENVIRONMENT=\"{{ env }}\""
+
+base_add_groups:
+  - name: group1
+  - name: group2
+    gid: 1010
+    sudoer: True
+  - name: group3
+    sudoer: True
+    nopasswd: True
+
+base_users:
+  - username: user1
+    name: user
+    groups:
+      - group1
+      - group2
+      - group3
+    public_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDP4KRUBg1/zeTTsCFRdfstDwHF4Zd26JG0H4Dnt5ZFw5TPIjeA2fVazaFDvDsBWkCGG3K6HQQNzaMrIWDLNotErG8FXG5icNVSoKeUCqwM2kg36ooNZQMg0Sx4q0YURRsF7C8Zfsyp2uRDsK6iG2iEQeuuJvAkugaTn6qeJlzIzyvHUSmiC94Nnlj9dbl24vDa3R1fNLISRHqegQiAgCw+v95zjI/MTfCM6e0CljErPMziHbmV5apI0BP5wbSj8l0RGza67YLeWA8l6yA1jlfAadCNXkYE/yf6uG7d10RAPPwpc7f8YcXVquYzjVWZ7uLjIvR5ysq4QrfIK7SzYH0z test1
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC353yfFoJLC7756rzA3PYwOXx4B7LJyYu/jJyJCGzQ/I9dKjYBRXUUpKlIuX9abGUUkGfM8qzsAgPYezdDFaz7BM8odhJD897ElEOaR2K8sguW1HKRSwv6forCriid7tSg+LNKne+OOFTrHdV4TEhoCkBDfsPjeiYjQqPmkNdq1Lt2zoKJmAxttFP/SyvL3H5m2kskDyiIWzs1MrLgKzjTMiKfoNiiJc1AWW6xQ/uubCIxYOaubTZBwRYKFE8BkTu/nNIbyW5+A+WKSEqY1GipZmzA4BU9hxvnlyfRYFqHPOUYWoshQFMf8LqURuXEETeS6fBxTYzPHs+xSJKc4mDV test2
+
+base_deleted_users:
+  - username: user2
+
+base_sudoers:
+    filename: 10-local-sudoers
+
+base_lc_ctype: en_GB
+base_lang: "{{ base_lc_ctype }}.UTF-8"
+
+base_timezone: UTC

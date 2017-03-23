@@ -1,0 +1,8 @@
+---
+
+- name: Set alternatives
+  alternatives:
+    name: "{{ item.name }}"
+    path: "{{ item.path }}"
+  with_items: base_alternatives
+  when: base_alternatives != {}

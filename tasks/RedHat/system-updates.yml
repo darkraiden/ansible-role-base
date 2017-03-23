@@ -1,0 +1,7 @@
+---
+
+- name: Install the EPEL repository
+  yum:
+    name: epel-release
+    update_cache: True
+    state: present

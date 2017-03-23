@@ -1,0 +1,4 @@
+{% for group in base_add_groups %}
+{% if group.sudoer is defined and group.sudoer %}%{{ group.name }} ALL=(ALL:ALL) {% if group.nopasswd is defined and group.nopasswd %}NOPASSWD: {% endif %}ALL
+{% endif %}
+{% endfor %}

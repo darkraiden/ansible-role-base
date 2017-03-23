@@ -1,0 +1,38 @@
+---
+
+base_hostname: baseDefault
+
+base_global_envs: []
+
+base_add_groups: {}
+
+base_per_user_groups: True
+
+base_users: {}
+
+base_deleted_users: {}
+
+base_alternatives: {}
+
+base_lc_ctype: ""
+base_lang: ""
+
+base_timezone: ""
+
+# SSH Variables
+base_ssh_port: [22]
+base_ssh_listen_address: []
+base_ssh_protocol: 2
+base_ssh_grace_time: 20s
+# Authentication
+base_ssh_permit_root_login: 'no'
+base_ssh_pubkey_authentication: 'yes'
+base_ssh_password_authentication: 'no'
+base_ssh_strict_modes: 'yes'
+base_ssh_max_auth_tries: 3
+base_ssh_max_sessions: 40
+
+base_utils_packages:
+  - htop
+  - vim
+  - telnet

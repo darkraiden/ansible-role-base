@@ -1,0 +1,12 @@
+---
+
+- name: Set Hostname
+  hostname:
+    name: "{{ base_hostname }}"
+
+- name: Add hostname to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    insertafter: '^127\.0\.0\.1'
+    line: "{{ base_private_ip | default('127.0.0.1') }} {{base_hostname }}"
+    state: present
