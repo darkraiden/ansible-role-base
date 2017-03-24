@@ -1,0 +1,26 @@
+---
+
+dependencies: []
+
+galaxy_info:
+  author: darkraiden
+  description: Base Role
+  company: "Crowdcube ltd"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.2
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: CentOS
+      versions:
+        - 6
+        - 7
+  galaxy_tags:
+    - development
+    - packaging
+    - sysadmin
+
