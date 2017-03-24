@@ -36,3 +36,4 @@ base_utils_packages:
   - htop
   - vim
   - telnet
+  -curl
