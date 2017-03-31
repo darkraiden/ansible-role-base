@@ -1,6 +1,8 @@
 ---
 
 - include: hostname.yml
+  tags:
+    - hostname
 
 - include: set_env.yml
 
