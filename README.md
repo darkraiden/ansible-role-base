@@ -18,9 +18,10 @@ Available variables are listed below, along with default values (see `defaults/m
 
 ```
 base_hostname: baseDefault
+base_private_ip: ""
 ```
 
-Hostname to be set on host.
+Hostname to be set on host and private IP address (default value: 127.0.0.1).
 
 ```
 base_global_envs: []
@@ -34,8 +35,10 @@ base_add_groups: {}
 
 This dictionary is used to add groups to the OS. It accepts the following parameters:
 
-* **name** - name of the group to create (Required); and
-* **gid** - GID to assign (Optional).
+* **name** - name of the group to create (Required);
+* **gid** - GID to assign (Optional);
+* **sudoer** - True/False, If group should be part of sudoers (Optional); and
+* **nopasswd** - True/False, sudo without password (Optional).
 
 ```
 base_per_user_groups: True
@@ -49,14 +52,16 @@ base_users: {}
 
 This dictionary is used to add users to the OS. It accepts the following parameters:
 
-* **username** - Username (Required);
-* **group**    - The user's primary group used if `base_per_user_groups` is True;
-* **groups**   - A list of groups the user will belong to (Optional);
-* **password** - The user's password (Optional);
-* **shell**    - The user's default shell - if not defined, `/bin/bash` will be assigned as default one;
-* **name**     - User's name that will be written into the user's comment section (Optional);
-* **uid**      - UID (Optional); and
-* **home**     - Bool, create home for user - default value is `True`.
+* **username**    - Username (Required);
+* **group**       - The user's primary group used if `base_per_user_groups` is True;
+* **groups**      - A list of groups the user will belong to (Optional);
+* **password**    - The user's password (Optional);
+* **shell**       - The user's default shell - if not defined, `/bin/bash` will be assigned as default one;
+* **name**        - User's name that will be written into the user's comment section (Optional);
+* **uid**         - UID (Optional);
+* **home**        - Bool, create home for user - default value is `True`;
+* **public_keys** - List of public ssh keys to add in user's `authorized_keys` file (Optional); and
+* **private_key** - User's private key which will be written in `~/.ssh/id_rsa` file.
 
 ```
 base_deleted_users: {}
@@ -67,6 +72,14 @@ This dictionary is used to delete users from your host. It accepts the following
 * **username** - Username (Required).
 
 **NB** If the user to delete is defined in `base_users`, remember to move it away from there before going ahead otherwise it'll always be created and destroyed every time.
+
+```
+base_sudoers: {}
+```
+
+Dictionary used to manage the sudoers file. The dictionary accepts the following parameters:
+
+* **filename** - Sudoers filename.
 
 ```
 base_alternatives: {}
