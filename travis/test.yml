@@ -10,5 +10,6 @@
     - role_under_test
   vars:
     - env: travis
+    - base_ssh: False
   vars_files:
     - /etc/ansible/roles/role_under_test/local/base.yml
