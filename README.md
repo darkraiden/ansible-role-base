@@ -1,5 +1,7 @@
 # Ansible Role Base
 
+[![Build Status](https://travis-ci.org/darkraiden/ansible-role-base.svg?branch=master)](https://travis-ci.org/darkraiden/ansible-role-base)
+
 Base configurations, including users and groups, for RHEL and Debian systems.
 
 ## Requirements
