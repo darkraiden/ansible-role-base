@@ -12,3 +12,5 @@
     name: "{{ base_ntp_package_name }}"
     state: present
   notify: restart ntpd
+  tags:
+    - ntp
