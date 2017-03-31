@@ -3,6 +3,6 @@
 - hosts: base
   become: True
   roles:
-    - ansible-role-base
+    - role_under_test
   vars_files:
     - /etc/ansible/roles/role_under_test/local/base.yml
