@@ -17,6 +17,8 @@
   when: ansible_os_family == 'RedHat'
 
 - include: swap.yml
+  tags:
+    - swap
 
 - include: ssh.yml
 

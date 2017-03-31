@@ -7,3 +7,5 @@
 - include: time.yml
 
 - include: security.yml
+  tags:
+    - security
