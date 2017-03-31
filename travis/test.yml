@@ -2,6 +2,10 @@
 
 - hosts: all
   become: True
+  pre_tasks:
+    - package:
+        name: hostname
+        state: present
   roles:
     - role_under_test
   vars_files:
