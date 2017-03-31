@@ -2,6 +2,10 @@
 
 Base configurations, including users and groups, for RHEL and Debian systems.
 
+## Requirements
+
+* hostname
+
 ## Dependencies
 
 None
