@@ -47,6 +47,9 @@ platforms:
       box: debian/jessie64
 
   - name: centos6
+    provisioner:
+      enable_yum_epel: True
+      ansible_version: latest
     driver_config:
       box: centos/6
 
