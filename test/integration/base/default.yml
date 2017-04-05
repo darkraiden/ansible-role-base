@@ -8,3 +8,5 @@
     - package:
         name: hostname
         state: present
+        update_cache: True
+      when: ansible_distribution != "CentOS"
