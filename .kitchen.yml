@@ -23,12 +23,32 @@ busser:
 
 platforms:
   - name: trusty
+    provisioner:
+      ansible_version: 2.2.0.0
+      require_ansible_omnibus: True
+      ansible_omnibus_url: https://raw.githubusercontent.com/neillturner/omnibus-ansible/master/ansible_install.sh
     driver_config:
       box: ubuntu/trusty64
 
   - name: xenial
+    provisioner:
+      ansible_version: 2.2.0.0
+      require_ansible_omnibus: True
+      ansible_omnibus_url: https://raw.githubusercontent.com/neillturner/omnibus-ansible/master/ansible_install.sh
     driver_config:
       box: ubuntu/xenial64
+
+  - name: jessie
+    provisioner:
+      ansible_version: 2.2.0.0
+      require_ansible_omnibus: True
+      ansible_omnibus_url: https://raw.githubusercontent.com/neillturner/omnibus-ansible/master/ansible_install.sh
+    driver_config:
+      box: debian/jessie64
+
+  - name: centos6
+    driver_config:
+      box: centos/6
 
   - name: centos7
     driver_config:
