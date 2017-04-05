@@ -3,7 +3,7 @@
 - name: Check if the system locale exists
   stat:
     path: /etc/locale.conf
-  register: locale_status
+  register: locale_file
 
 - name: Set the system locale
   lineinfile:
@@ -12,8 +12,8 @@
     line: "LANG={{ base_lang }}"
     state: present
   register: locale_status
-  when: base_lang != "" and locale_status.stat.exists
+  when: base_lang != "" and locale_file.stat.exists
 
 - name: Set the current session with set locale
   command: "localectl set-locale LANG=\"{{ base_lang }}\" LC_CTYPE=\"{{ base_lc_ctype }}\""
-  when: locale_status.changed and base_lc_ctype != "" and locale_status.stat.exists
+  when: locale_status.changed and base_lc_ctype != "" and locale_file.stat.exists
