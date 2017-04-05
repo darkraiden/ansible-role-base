@@ -191,9 +191,11 @@ $ bundle
 
 This kitchen configuration comes with 3 different VMs:
 
+* centos6
 * centos7
-* trusty
-* xenial
+* trusty (Ubuntu-14.04)
+* xenial (Ubuntu-16.04)
+* jessie (Debian-8)
 
 If you want to test the role using all of those machines, just run the commands below as they are. If you want to test the role on one system only, append to the commands below the VM name.
 
