@@ -1,5 +1,12 @@
 ---
 
+
+- name: Include OS-specific vars
+  include_vars: "{{ ansible_os_family | lower }}.yml"
+
+- include: RedHat/main.yml
+  when: ansible_os_family == 'RedHat'
+
 - include: hostname.yml
   tags:
     - hostname
@@ -9,12 +16,6 @@
 - include: users/users-management.yml
 
 - include: alternatives.yml
-
-- name: Include OS-specific vars
-  include_vars: "{{ ansible_os_family | lower }}.yml"
-
-- include: RedHat/main.yml
-  when: ansible_os_family == 'RedHat'
 
 - include: swap.yml
   tags:
