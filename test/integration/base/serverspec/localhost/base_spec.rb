@@ -39,7 +39,5 @@ end
 
 describe file('/etc/sudoers.d/10-local-sudoers') do
     it { should exist }
-    it { should contain '%group2 ALL=(ALL:ALL) ALL' }
-    it { should contain '%group3 ALL=(ALL:ALL) NOPASSWD: ALL' }
-    # it { should match /%group\d+\s+ALL=\(ALL:ALL\)\s+(NOPASSWD:\s+)?ALL/ }
+    its(:content) { should match /%group\d+\s+ALL=\(ALL:ALL\)\s+(NOPASSWD:\s+)?ALL/ }
 end
