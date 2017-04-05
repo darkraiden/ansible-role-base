@@ -6,8 +6,12 @@ if os[:family] == 'redhat'
         it { should be_installed }
     end
 
-    describe file('/etc/locale.conf') do
-        its(:content) { should match /LANG=en_GB\.UTF-8/ }
+    if os[:release].to_i > 6
+
+        describe file('/etc/locale.conf') do
+            its(:content) { should match /LANG=en_GB\.UTF-8/ }
+        end
+
     end
 
     describe file('/etc/localtime') do
